@@ -6,7 +6,7 @@ const request = require('request-promise');
 async function nekoMinig() {
 
 const $ = await request({
-uri: 'https://www.hispachan.org/ve/res/1701249.html',
+uri: 'https://www.hispachan.org/ve/res/1701835.html',
 transform: body => cheerio.load(body)
 
 })
@@ -15,6 +15,7 @@ let reGex2 =/^\s+|\s+$|\s+(?=\s)/g
 let reGex3 =/(\[X\]|\/#\/|>>.........*|\[★\]|\[S\]|\[A\]|...*.jpg|...*.png|...*.gif|...*.mp4|...*.webm)/gi
 let reGex4 =/(.jpg|.png|.webm|.mp4|.gif|\(.....................)/gis
 let reGex5 =/(Eliminar..*CP)/gis
+let reGex6 =/(>>.An.nimo)/gs
 let titulo = $('#delform');
 titulo = titulo.text();
 //titulo = (titulo.replace(reGex1, ""));
@@ -22,7 +23,9 @@ titulo = titulo.replace(reGex1, "").trim()
 titulo = titulo.replace(reGex2, "")
 titulo = titulo.replace(reGex3, "")
 titulo = titulo.replace(reGex4, "")
-console.log(titulo.replace(reGex5, ""))
+titulo = titulo.replace(reGex5, "")
+titulo = titulo.replace(reGex6, "")
+console.log(JSON.parse(titulo));
 
 
 }
